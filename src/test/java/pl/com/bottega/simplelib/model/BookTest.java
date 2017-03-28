@@ -1,4 +1,4 @@
-package pl.com.bottega.model;
+package pl.com.bottega.simplelib.model;
 
 /**
  * Created by maciekdudek on 28.03.2017.
