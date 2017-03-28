@@ -1,7 +1,14 @@
 package pl.com.bottega.simplelib.model;
 
-/**
- * Created by maciekdudek on 28.03.2017.
- */
 public class BookId {
+
+    private final String id;
+
+    public BookId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
 }
