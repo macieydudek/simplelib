@@ -1,5 +1,7 @@
 package pl.com.bottega.simplelib.model;
 
+import pl.com.bottega.simplelib.model.BookId.BookIdGenerator;
+
 public class BookFactory {
 
     private BookIdGenerator bookIdGenerator;

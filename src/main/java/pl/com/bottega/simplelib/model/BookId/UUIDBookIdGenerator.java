@@ -1,5 +1,7 @@
-package pl.com.bottega.simplelib.model;
+package pl.com.bottega.simplelib.model.BookId;
 
+
+import pl.com.bottega.simplelib.model.Book;
 
 import java.util.UUID;
 

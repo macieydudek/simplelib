@@ -1,7 +1,9 @@
 package pl.com.bottega.simplelib.application;
 
 import pl.com.bottega.simplelib.model.AddBookCommand;
-import pl.com.bottega.simplelib.model.BookId;
+import pl.com.bottega.simplelib.model.BookId.BookId;
+
+import java.util.List;
 
 public interface BookManager {
 
@@ -9,7 +11,7 @@ public interface BookManager {
 
     void remove(BookId id);
 
-    void listBooks();
+    List<String> listBooks();
 
     BookDto showDetails(BookId id);
 }

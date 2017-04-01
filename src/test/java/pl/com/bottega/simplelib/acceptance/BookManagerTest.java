@@ -5,14 +5,18 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 import pl.com.bottega.simplelib.application.BookDto;
 import pl.com.bottega.simplelib.application.BookManager;
+import pl.com.bottega.simplelib.application.LendingProcess;
 import pl.com.bottega.simplelib.model.*;
+import pl.com.bottega.simplelib.model.BookId.BookId;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
+@Transactional
 public class BookManagerTest {
 
     @Autowired
@@ -20,6 +24,9 @@ public class BookManagerTest {
 
     @Autowired
     BookManager bookManager;
+
+    @Autowired
+    LendingProcess lendingProcess;
 
     @Test
     public void shouldAddBookToRepository() {
@@ -54,6 +61,17 @@ public class BookManagerTest {
         assertThat(bookDto.getAuthor()).isEqualTo("John Smith");
         assertThat(bookDto.getTitle()).isEqualTo("Bestseller");
         assertThat(bookDto.getYear()).isEqualTo("2017");
+    }
+
+    @Test
+    public void shouldRememberClientAfterLending() {
+        //given - a book is added to repository, then lend by a Client
+        BookId bookId = addBookToRepo();
+        lendingProcess.lend(bookId, new Client("Joe Normal"));
+        //when - I view book details
+        BookDto bookDto = bookManager.showDetails(bookId);
+        //then - it shows Client upon inspection
+        assertThat(bookDto.getClient()).isEqualTo(new Client("Joe Normal"));
     }
 
     private BookId addBookToRepo() {

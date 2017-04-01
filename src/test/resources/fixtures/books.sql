@@ -1,0 +1,10 @@
+INSERT INTO BOOK VALUES ('1', 'John Smith', null, 2017, 'AVAILABLE', 'Test title');
+INSERT INTO BOOK VALUES ('2', 'John Smith', null, 2017, 'AVAILABLE', 'Test title');
+INSERT INTO BOOK VALUES ('3', 'John Smith', 'Joe Normal', 2017, 'LEND', 'Test title');
+INSERT INTO BOOK VALUES ('4', 'John Smith', null, 2017, 'AVAILABLE', 'Another test');
+INSERT INTO BOOK VALUES ('5', 'John Smith', null, 2017, 'AVAILABLE', 'Title');
+INSERT INTO BOOK VALUES ('6', 'John Smith', null, 2010, 'AVAILABLE', 'Test title');
+INSERT INTO BOOK VALUES ('7', 'Adam Brooks', null, 2012, 'AVAILABLE', 'Test title');
+INSERT INTO BOOK VALUES ('8', 'Adam Brooks', null, 2000, 'AVAILABLE', 'AtestB');
+INSERT INTO BOOK VALUES ('9', 'Adam Brooks', 'Joe Normal', 2017, 'LEND', 'Test title');
+INSERT INTO BOOK VALUES ('10', 'Adam Brooks', null, 1999, 'AVAILABLE', 'Title');

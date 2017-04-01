@@ -2,10 +2,13 @@ package pl.com.bottega.simplelib.model;
 
 public class Author {
 
-    private final String name;
+    private String name;
 
     public Author(String name) {
         this.name = name;
+    }
+
+    Author() {
     }
 
     @Override
@@ -22,5 +25,10 @@ public class Author {
     @Override
     public int hashCode() {
         return name.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

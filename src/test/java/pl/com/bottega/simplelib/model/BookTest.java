@@ -2,6 +2,9 @@ package pl.com.bottega.simplelib.model;
 
 
 import org.junit.Test;
+import org.springframework.transaction.annotation.Transactional;
+import pl.com.bottega.simplelib.model.BookId.BookIdGenerator;
+import pl.com.bottega.simplelib.model.BookId.UUIDBookIdGenerator;
 
 import static org.junit.Assert.*;
 
@@ -66,14 +69,14 @@ public class BookTest {
     public void shouldNotAllowToLendIfBookIsLEND() {
         //given
         Book book = given().lendBook();
-        book.lent(new Reader("Joe Normal"));
+        book.lend(new Client("Joe Normal"));
     }
 
     // ---9---
     @Test
     public void shouldRememberCurrentReader() {
         Book book = given().lendBook();
-        assertEquals(new Reader("Joe Normal"), book.getReader());
+        assertEquals(new Client("Joe Normal"), book.getClient());
     }
 
     private BookAssembler given() {
@@ -88,7 +91,7 @@ public class BookTest {
         //when
         book.returnBook();
         //then
-        assertNull(book.getReader());
+        assertNull(book.getClient());
     }
 
     class BookAssembler {
@@ -100,13 +103,12 @@ public class BookTest {
             cmd.setAuthor(new Author("Roland Deschain"));
             BookIdGenerator bookIdGenerator = new UUIDBookIdGenerator();
             BookFactory bookFactory = new BookFactory(bookIdGenerator);
-            Book book = bookFactory.createBook(cmd);
-            return book;
+            return bookFactory.createBook(cmd);
         }
 
         public Book lendBook() {
             Book book = createBook();
-            book.lent(new Reader("Joe Normal"));
+            book.lend(new Client("Joe Normal"));
             return book;
         }
     }

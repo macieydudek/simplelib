@@ -1,20 +1,22 @@
 package pl.com.bottega.simplelib.model;
 
-public class Reader {
-    private final String name;
+public class Client {
+    private String name;
 
-    public Reader(String name) {
+    public Client(String name) {
         this.name = name;
     }
+
+    Client(){}
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Reader reader = (Reader) o;
+        Client client = (Client) o;
 
-        return name.equals(reader.name);
+        return name.equals(client.name);
 
     }
 
