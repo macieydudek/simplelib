@@ -27,6 +27,24 @@ public class JPABookCatalog implements BookCatalog{
     EntityManager entityManager;
 
     @Override
+    public BookDto get(BookId id) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Book> criteriaQuery = criteriaBuilder.createQuery(Book.class);
+        Root<Book> root = criteriaQuery.from(Book.class);
+        criteriaQuery.where(criteriaBuilder.equal(root.get("bookId"), id));
+        Query query = entityManager.createQuery(criteriaQuery);
+        try {
+            Book book = (Book) query.getSingleResult();
+            BookDto bookDto = createDto(book);
+            includeClient(bookDto, book);
+            return bookDto;
+        } catch (NoResultException ex) {
+            throw new BookNotFoundException(id);
+        }
+
+    }
+
+    @Override
     public List<BookDto> find(BookQuery bookQuery) {
         List<BookDto> results = new LinkedList<>();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -95,24 +113,6 @@ public class JPABookCatalog implements BookCatalog{
 
     private void addOnlyAvailablePredicate(CriteriaBuilder criteriaBuilder, Root<Book> root, Set<Predicate> predicates) {
         predicates.add(criteriaBuilder.equal(root.get("status"), BookStatus.AVAILABLE));
-    }
-
-    @Override
-    public BookDto get(BookId id) {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Book> criteriaQuery = criteriaBuilder.createQuery(Book.class);
-        Root<Book> root = criteriaQuery.from(Book.class);
-        criteriaQuery.where(criteriaBuilder.equal(root.get("bookId"), id));
-        Query query = entityManager.createQuery(criteriaQuery);
-        try {
-            Book book = (Book) query.getSingleResult();
-            BookDto bookDto = createDto(book);
-            includeClient(bookDto, book);
-            return bookDto;
-        } catch (NoResultException ex) {
-            throw new BookNotFoundException(id);
-        }
-
     }
 
     private void includeClient(BookDto bookDto, Book book) {

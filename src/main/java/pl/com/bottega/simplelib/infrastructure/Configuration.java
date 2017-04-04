@@ -40,7 +40,7 @@ public class Configuration {
         return new JPABookCatalog();}
 
     @Bean
-    public LendingProcess lendingProcess(BookRepository bookRepository) {
-        return new StandardLendingProcess(bookRepository);
+    public LendingProcess lendingProcess(BookRepository bookRepository, BookCatalog bookCatalog) {
+        return new StandardLendingProcess(bookRepository, bookCatalog);
     }
 }

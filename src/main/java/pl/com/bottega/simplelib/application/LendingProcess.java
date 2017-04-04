@@ -7,7 +7,7 @@ import java.util.Collection;
 
 public interface LendingProcess {
 
-    Collection<BookDto> search(BookQuery query);
+    BookSearchResults search(BookQuery query);
 
     void lend(BookId id, Client client);
 

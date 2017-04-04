@@ -4,6 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.com.bottega.simplelib.application.BookCatalog;
 import pl.com.bottega.simplelib.application.BookDto;
 import pl.com.bottega.simplelib.application.BookManager;
+import pl.com.bottega.simplelib.application.BookRecord;
 import pl.com.bottega.simplelib.model.BookRepository;
 import pl.com.bottega.simplelib.model.AddBookCommand;
 import pl.com.bottega.simplelib.model.Book;
@@ -40,10 +41,9 @@ public class StandardBookManager implements BookManager {
     }
 
     @Override
-    public List<String> listBooks() {
-        return bookRepository.listDistinctBooks();
+    public List<BookRecord> listBooks() {
+        return null;
     }
-
 
     @Override
     public BookDto showDetails(BookId id) {

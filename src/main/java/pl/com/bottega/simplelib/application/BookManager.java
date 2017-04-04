@@ -11,7 +11,7 @@ public interface BookManager {
 
     void remove(BookId id);
 
-    List<String> listBooks();
+    List<BookRecord> listBooks();
 
     BookDto showDetails(BookId id);
 }
