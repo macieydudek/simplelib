@@ -11,7 +11,7 @@ public interface BookManager {
 
     void remove(BookId id);
 
-    List<BookRecord> listBooks();
+    BookSearchResults showAllBooks();
 
     BookDto showDetails(BookId id);
 }

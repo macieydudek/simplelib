@@ -22,7 +22,7 @@ public class Configuration {
     }
 
     @Bean BookRepository bookRepository(){
-        return new JPABookRepository();
+        return new JPQLBookRepository();
     }
 
     @Bean
@@ -37,7 +37,7 @@ public class Configuration {
 
     @Bean
     public BookCatalog bookCatalog() {
-        return new JPABookCatalog();}
+        return new JPQLBookCatalog();}
 
     @Bean
     public LendingProcess lendingProcess(BookRepository bookRepository, BookCatalog bookCatalog) {

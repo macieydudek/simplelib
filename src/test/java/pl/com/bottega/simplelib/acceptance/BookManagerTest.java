@@ -74,6 +74,18 @@ public class BookManagerTest {
         assertThat(bookDto.getClient()).isEqualTo(new Client("Joe Normal"));
     }
 
+    @Test
+    public void shouldHaveNoClientAfterReturning() {
+        //given - a book is added to repository, then lend by a Client and returned
+        BookId bookId = addBookToRepo();
+        lendingProcess.lend(bookId, new Client("Joe Normal"));
+        lendingProcess.returnBook(bookId);
+        //when - I view book details
+        BookDto bookDto = bookManager.showDetails(bookId);
+        //then - it should not show Client upon inspection
+        assertThat(bookDto.getClient()).isNull();
+    }
+
     private BookId addBookToRepo() {
         AddBookCommand cmd = new AddBookCommand();
         cmd.setAuthor(new Author("John Smith"));

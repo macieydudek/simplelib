@@ -9,7 +9,7 @@ import pl.com.bottega.simplelib.model.Client;
 
 import java.util.Collection;
 
-public class StandardLendingProcess implements LendingProcess{
+public class StandardLendingProcess implements LendingProcess {
 
     private BookRepository bookRepository;
     private BookCatalog bookCatalog;
@@ -22,7 +22,7 @@ public class StandardLendingProcess implements LendingProcess{
 
     @Override
     public BookSearchResults search(BookQuery query) {
-        return null;
+        return bookCatalog.find(query);
     }
 
     @Override
@@ -33,7 +33,9 @@ public class StandardLendingProcess implements LendingProcess{
     }
 
     @Override
+    @Transactional
     public void returnBook(BookId id) {
-
+        Book book = bookRepository.get(id);
+        book.returnBook();
     }
 }

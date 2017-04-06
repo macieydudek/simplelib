@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BookCatalog {
 
-    List<BookDto> find(BookQuery bookQuery);
+    BookSearchResults find(BookQuery bookQuery);
 
     BookDto get(BookId id);
 

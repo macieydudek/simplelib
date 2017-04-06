@@ -10,6 +10,4 @@ public interface BookRepository {
     Book get(BookId id);
 
     void remove(BookId id);
-
-    List<String> listDistinctBooks();
 }
